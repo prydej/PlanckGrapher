@@ -1,0 +1,11 @@
+******Planck Equation Grapher******
+
+Description:
+The Planck Equation Grapher will take a temperature from the user using a slider, calculate the intensity of black body radiation it emits at different wavelengths and plot the spectral intensity curve with spectral radiance on the y axis and wavelength on the x-axis. The grapher will also display the color of light seen by the eye for the temperature selected by the user.
+
+Requirements:
+1. The program shall allow the user to select a temperature using a slider
+2. The program shall calculate the spectral intensity radiated by an object of the selected temperature at 200 wavelengths of 0 to 1.5 		micrometers
+3. The program shall display the calculated intensities on a line graph.
+4. The program shall display the total radiated energy at the specified temperature.
+5. The program shall display the color of light seen by the human eye at the specified temperature.
