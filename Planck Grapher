@@ -15,45 +15,65 @@
 			var energyEmitted = Math.round(5.6 * Math.pow(10, -8) * Math.pow(temp, 4));
 			
 			//separeate energyEmitted by spaces so commas can be added for readability
-			var energyString = energyEmitted.toString();
-			for ()
+			//var energyString = energyEmitted.toString();
+			//for ()
 			
 			//Add commas to energyEmitted to make more readable
-			var formattedEnergyEmitted = energyEmitted.toString().replace(, ",");
+			//var formattedEnergyEmitted = energyEmitted.toString().replace(, ",");
 			
 			//Send formatted Energy to <p> tag energyTxt
-			document.getElementById('energyTxt').innerHTML = 'The object emits ' + energyEmitted + ' Watts per Meter';
+			document.getElementById('energyTxt').innerHTML = 'The object emits ' + 
+				energyEmitted + ' Watts per Meter';
 		}
 		
-		function foo() {
-			//document.getElementById('energyTxt').innerHTML = 'The object emits ' + 100 + ' Joules.';
+		//Update slider value after submit button is hit
+		function updateSliderValue() {
+			
+			//set slider value to value in text field
+			document.getElementById('tempSlider').value = document.getElementById('tempChooser').value;
 		}
 		
-		//Update value shown next to slider
-		function updateSliderInput(value) {
-			document.getElementById('sliderValue').value = document.getElementById('tempSlider');
+		//Update text field value when slider is moved
+		function updateTextFieldValue() {
+			
+			//set text field value to value of slider
+			document.getElementById('tempChooser').value = document.getElementById('tempSlider').value;
 		}
-		
-		/*function alertSomething(){
-			alert('Recieved');
-		}
-		
-		function changeText(){
-			document.getElementById('sliderValue').innerHTML = 'recieved';
-		}*/
 		</script>
+		<style>
+		#input {
+			position:absolute;
+			left:160px;
+			top:10px;
+			width:150px;
+			/*border:3px solid #0000FF;*/
+		}
+		
+		#submitButton{
+			position:absolute;
+			left:165px;
+			top:10px;
+			/*border:3px solid #00FF00;*/
+		}
+		
+		#energyTxt{
+			position:absolute;
+			top: 40px;
+			/*border:3px solid #FF0000;*/
+		}
+		</style>
 	</head>
 	
 	<body>
 		<!--Text input for temperature	-->
-		Temperature (Kelvin): <input type='text' id='temp' value='238'>
+		Temperature (Kelvin): <div id='input'><input type='text' id='tempChooser' value='238'></input>
 		
 		<!--Slider input for temperature	-->
-		<input type='range' id='tempSlider' value='238' min='0' max='5000' 
-			
-		<!--Display slider value	-->
-		<p id='sliderValue'></p>
+		</br><input type='range' id='tempSlider' value='238' min='0' max='5000' 
+			onchange='calcEnergy();updateTextFieldValue();' style='width:150px'></input></div>
 		
+		<div id='submitButton'><button id='submitButton' left='250px' onclick='updateSliderValue();calcEnergy();'>Submit</button></div>
+			
 		<!--Display Energy emitted by object	-->
 		<p id='energyTxt'></p>
 		
