@@ -1,14 +1,62 @@
 <html>
 
-<script>
-var temp = 238;
-
-document.write("The object is " + temp + " degrees Kelvin.");
-
-var nrgEmitted = 5.6 * pow(10, -8) * pow(temp, 4);
-
-document.write("Energy Emitted: " + nrgEmitted);
-
-</script>
+	<head>
+		<!--start jQuery-->
+		<script type='text/javascript' src='http://code.jquery.com/jquery-latest.min.js'></script>
+		
+		<script>
+		//calculate the Energy emitted by object
+		function calcEnergy() {
+			
+			//Get temp from sliderValue
+			var temp = document.getElementById('tempSlider').value;
+			
+			//Calculate energy emitted
+			var energyEmitted = Math.round(5.6 * Math.pow(10, -8) * Math.pow(temp, 4));
+			
+			//separeate energyEmitted by spaces so commas can be added for readability
+			var energyString = energyEmitted.toString();
+			for ()
+			
+			//Add commas to energyEmitted to make more readable
+			var formattedEnergyEmitted = energyEmitted.toString().replace(, ",");
+			
+			//Send formatted Energy to <p> tag energyTxt
+			document.getElementById('energyTxt').innerHTML = 'The object emits ' + energyEmitted + ' Watts per Meter';
+		}
+		
+		function foo() {
+			//document.getElementById('energyTxt').innerHTML = 'The object emits ' + 100 + ' Joules.';
+		}
+		
+		//Update value shown next to slider
+		function updateSliderInput(value) {
+			document.getElementById('sliderValue').value = document.getElementById('tempSlider');
+		}
+		
+		/*function alertSomething(){
+			alert('Recieved');
+		}
+		
+		function changeText(){
+			document.getElementById('sliderValue').innerHTML = 'recieved';
+		}*/
+		</script>
+	</head>
+	
+	<body>
+		<!--Text input for temperature	-->
+		Temperature (Kelvin): <input type='text' id='temp' value='238'>
+		
+		<!--Slider input for temperature	-->
+		<input type='range' id='tempSlider' value='238' min='0' max='5000' 
+			
+		<!--Display slider value	-->
+		<p id='sliderValue'></p>
+		
+		<!--Display Energy emitted by object	-->
+		<p id='energyTxt'></p>
+		
+	</body>
 
 </html>
