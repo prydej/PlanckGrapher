@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+	<head>
+		<!--start jQuery-->
+		<script type='text/javascript' src='http://code.jquery.com/jquery-latest.min.js' 
+				src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'
+                src='~/node_modules/chart.js' 
+                ></script>
+		<script>
+		
+        //Create 2-dimensional object of energies and wavelengths
+        var temperatures = [];
+        var raciance;
+        var h = 6.63 * Math.pow(10,-34);
+        var c = 3.0 * Math.pow(10,8);
+        var k = 1.38 * Math.pow(10,-23);
+        
+        //Each iteration corresponds to 10 Kelvin
+        for (var i = 0; i < 10000; i++){
+            //Create array of all wavelengths
+            wavelengths = [];
+
+            //push wavelengths to 
+            temperatures.push(wavelengths);
+
+            //Each iteration corresponds to 10 nanoMeters of wavelength
+            for (var j = 0; j < 100; j++){    
+                //Calculate radiation at that wavelength and temperature
+                radiance = 2 * h * Math.pow(c,2) / (Math.pow(j,5) * Math.exp(h * c / j*10 * k * i*10) - 1);
+
+                //Push result to wavelengths
+                wavelengths.push(radiance);
+            }
+        }
+        
+//        //Create array for x-axis labels
+//        var cartXLabels = [];
+//        for (var k = 0; k < 10; k++){
+//            cartXLabels.push(k);
+//        }
+//            
+//        //Create chart datatempSlider
+//        var lineChartData = {
+//            labels:cartXLabels,
+//            datasets:temperatures[];
+//        }
+//        
+        //Load Chart    
+        document.getElementById('submitButton').onclick //when submit button is clicked
+            = function() {tempSlider
+            var ctx = document.getElementById('cartesian').getContext('2d');
+            window.myLine = new Chart(ctx).Line(wavelengths, responsive:true)}
+		
+        document.getElementById('tempSlider').onchange //when slider is moved
+            = function() {tempSlider
+            var ctx = document.getElementById('cartesian').getContext('2d');
+            window.myLine = new Chart(ctx).Line(wavelength, responsive:true)}
+        
+        //Load correct data into wavelength
+        function loadToWavelength(Number) {
+            var wavelength = temperatures[Number];
+        }
+        
+		//calculate the Energy emitted by object
+		function calcEnergy() {
+			
+			//Get temp from sliderValue
+			var temp = document.getElementById('tempSlider').value;
+			
+			//Calculate energy emitted
+			var energyEmitted = Math.round(5.6 * Math.pow(10, -8) * Math.pow(temp, 4));
+			
+			/*//Populate energies object with energies for that temp
+			for (var i = 1; i < 50; i++){
+				energies[i.toString] = 
+			}*/
+			
+			//separeate energyEmitted by spaces so commas can be added for readability
+			//var energyString = energyEmitted.toString();
+			//for ()
+			
+			//Add commas to energyEmitted to make more readable
+			//var formattedEnergyEmitted = energyEmitted.toString().replace(, ",");
+			
+			//Send formatted Energy to <p> tag energyTxt
+			document.getElementById('energyTxt').innerHTML = 'The object emits ' + 
+				energyEmitted + ' Watts per Meter Squared';
+		}
+		
+		//Update slider value after submit button is hit
+		function updateSliderValue() {
+			
+			//set slider value to value in text field
+			document.getElementById('tempSlider').value = document.getElementById('tempChooser').value;
+		}
+		
+		//Update text field value when slider is moved
+		function updateTextFieldValue() {
+			
+			//set text field value to value of slider
+			document.getElementById('tempChooser').value = document.getElementById('tempSlider').value;
+		}
+		</script>
+		<style>
+		#input {
+			position:absolute;
+			left:160px;
+			top:10px;
+			width:150px;
+			/*border:3px solid #0000FF;*/
+		}
+
+		#submitButton{
+			position:absolute;
+			left:165px;
+			top:10px;
+			/*border:3px solid #00FF00;*/
+		}
+		
+		#energyTxt{
+			position:absolute;
+			top: 40px;
+			/*border:3px solid #FF0000;*/
+		}
+		</style>
+	</head>
+	
+	<body>
+		<!--Text input for temperature	-->
+		Temperature (Kelvin): <div id='input'><input type='text' id='tempChooser' value='288' style="position:absolute top:10px"></input>
+        
+		
+		<!--Slider input for temperature	-->
+		</br><input type='range' id='tempSlider' value='238' min='0' max='10000' 
+			onchange='calcEnergy();updateTextFieldValue();' style='width:150px'></input></div>
+		
+		<div id='submitButton'><button id='submitButton' left='250px' onclick='updateSliderValue();calcEnergy();'>Submit</button></div>
+
+		<!--Display Energy emitted by object	-->
+		<p id='energyTxt'>The object emits 385 Watts per Meter Squared</p>
+
+<!--
+        Cartesian Graph 
+        <div style='width:50%'>
+            <canvas id='cartesian' height="450" width="600"></canvas>
+        </div>
+-->
+		
+		
+		
+	</body>
+
+</html>
